@@ -46,20 +46,15 @@ struct ContentView: View {
             
             ZStack {
                 ForEach(0 ..< slides.count) { slideIndex in
-                    GeometryReader { geometry -> AnyView in
-                        var imageAspectRatio: CGFloat {
-                            return CGFloat(slides[slideIndex].image.height) / CGFloat(slides[slideIndex].image.width)
-                        }
+                    GeometryReader { geometry in
+                        Image(slides[slideIndex].image.name)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.top, 130)
+                            .opacity(selectedPage == slideIndex ? 1 : 0)
+                            .animation(.easeInOut)
+                        //  .frame(width: geometry.size.width, height: CGFloat(geometry.size.width * imageAspectRatio))
                         
-                        return AnyView(
-                            Image(slides[slideIndex].image.name)
-                                .resizable()
-                                .scaledToFit()
-                                .padding(.top, 130)
-                                .opacity(selectedPage == slideIndex ? 1 : 0)
-                                .animation(.easeInOut)
-                            //  .frame(width: geometry.size.width, height: CGFloat(geometry.size.width * imageAspectRatio))
-                        )
                     }
                 }
             }

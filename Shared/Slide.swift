@@ -35,7 +35,6 @@ struct Slide: View {
                 
                 VStack(spacing: 12) {
                     Spacer()
-                    
                     Text(slide.subtitle)
                         .fontWeight(.semibold)
                         .font(.title)
@@ -58,6 +57,7 @@ struct Slide: View {
                 }
                 .frame(maxHeight: .infinity)
                 .padding(.horizontal, 44)
+                .offset(y: -geometry.size.height / 8)
                 
             }
         }
