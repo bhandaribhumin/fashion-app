@@ -25,13 +25,6 @@ struct Slide: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                Image(slide.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .clipShape(FunkyBorders())
-                    .offset(y: -48)
-                
                 Text(slide.title)
                     .font(.system(size: 80))
                     .foregroundColor(.white)
@@ -39,7 +32,7 @@ struct Slide: View {
                     .rotationEffect(.degrees((isTrailingText ? -1 : 1) * 90))
                     .offset(y: geometry.size.height / 6)
                     .offset(x: ((isTrailingText ? 1 : -1) * geometry.size.width / 2) + ((isTrailingText ? -1 : 1) * 50))
-            
+                
                 VStack(spacing: 12) {
                     Spacer()
                     
@@ -63,9 +56,8 @@ struct Slide: View {
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                     }
                 }
+                .frame(maxHeight: .infinity)
                 .padding(.horizontal, 44)
-                .frame(height: geometry.size.height)
-                .offset(y: -geometry.size.height / 8)
                 
             }
         }
@@ -136,7 +128,7 @@ struct FunkyBorders: Shape {
 }
 
 struct Slide_Previews: PreviewProvider {
-    static let slideTest: SlideContent = SlideContent(color: .pink, title: "Test", subtitle: "Some more title", description: "A longer description here would fit super nicely on the screen", imageName: "onboarding1")
+    static let slideTest: SlideContent = SlideContent(color: .pink, title: "Test", subtitle: "Some more title", description: "A longer description here would fit super nicely on the screen", image: OnboardingImage(name: "onboarding4", width: 1757, height: 2551))
     
     static var previews: some View {
         ZStack {
@@ -145,6 +137,5 @@ struct Slide_Previews: PreviewProvider {
             
             Slide(slide: slideTest, isTrailingText: false, isLast: true, slideIndex: 0, selectedPage: .constant(1))
         }
-        .edgesIgnoringSafeArea(.top)
     }
 }
