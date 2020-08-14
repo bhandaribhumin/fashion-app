@@ -39,41 +39,44 @@ struct ContentView: View {
     @State private var selectedColor = slides[0].color
     
     var body: some View {
-        ZStack {
-            selectedColor
-                .clipShape(FunkyBorders())
-                .animation(.easeInOut)
-            
+        NavigationView {
             ZStack {
-                ForEach(0 ..< slides.count) { slideIndex in
-                    GeometryReader { geometry in
-                        Image(slides[slideIndex].image.name)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(.top, 130)
-                            .opacity(selectedPage == slideIndex ? 1 : 0)
-                            .animation(.easeInOut)
-                        //  .frame(width: geometry.size.width, height: CGFloat(geometry.size.width * imageAspectRatio))
-                        
+                selectedColor
+                    .clipShape(FunkyBorders())
+                    .animation(.easeInOut)
+                
+                ZStack {
+                    ForEach(0 ..< slides.count) { slideIndex in
+                        GeometryReader { geometry in
+                            Image(slides[slideIndex].image.name)
+                                .resizable()
+                                .scaledToFit()
+                                .padding(.top, 130)
+                                .opacity(selectedPage == slideIndex ? 1 : 0)
+                                .animation(.easeInOut)
+                            //  .frame(width: geometry.size.width, height: CGFloat(geometry.size.width * imageAspectRatio))
+                            
+                        }
                     }
                 }
-            }
-            .clipShape(FunkyBorders())
-            
-            TabView(selection: $selectedPage) {
-                ForEach(0 ..< slides.count) { slideIndex in
-                    Slide(slide: slides[slideIndex], isTrailingText: slideIndex % 2 != 0, isLast: slideIndex == slideCount, slideIndex: slideIndex, selectedPage: $selectedPage)
-                        .tag(slideIndex)
+                .clipShape(FunkyBorders())
+                
+                TabView(selection: $selectedPage) {
+                    ForEach(0 ..< slides.count) { slideIndex in
+                        Slide(slide: slides[slideIndex], isTrailingText: slideIndex % 2 != 0, isLast: slideIndex == slideCount, slideIndex: slideIndex, selectedPage: $selectedPage)
+                            .tag(slideIndex)
+                    }
                 }
+                .onChange(of: selectedPage, perform: { value in
+                    selectedColor = slides[value].color
+                })
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .animation(.easeInOut)
+                
             }
-            .onChange(of: selectedPage, perform: { value in
-                selectedColor = slides[value].color
-            })
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .animation(.easeInOut)
-            
+            .edgesIgnoringSafeArea(.all)
+            .navigationBarHidden(true)
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

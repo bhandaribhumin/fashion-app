@@ -47,12 +47,16 @@ struct Slide: View {
                         .foregroundColor(Color(#colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 1)))
                         .padding(.bottom, 40)
                     
-                    Button(action: navigate) {
-                        Text(variant == .primary ? "Let's get started" : "Next")
-                            .foregroundColor(variant == .primary ? .white : Color(#colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 1)))
-                            .frame(width: 245, height: 50)
-                            .background(Color(variant == .primary ? #colorLiteral(red: 0.1725490196, green: 0.7254901961, blue: 0.6901960784, alpha: 1) : #colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 0.05121630933)))
-                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                    if variant != .primary {
+                        Button(action: navigate) {
+                            Text("Next")
+                                .modifier(ButtonSecondary())
+                        }
+                    } else {
+                        NavigationLink(destination: WelcomeView()) {
+                            Text("Let's get started")
+                                .modifier(ButtonPrimary())
+                        }
                     }
                 }
                 .frame(maxHeight: .infinity)
@@ -70,13 +74,45 @@ struct Slide: View {
     }
 }
 
+//TODO: these are shared components, maybe extract them
+struct ButtonPrimary: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(.white)
+            .frame(width: 245, height: 50)
+            .background(Color(#colorLiteral(red: 0.1725490196, green: 0.7254901961, blue: 0.6901960784, alpha: 1)))
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+    }
+}
+
+struct ButtonSecondary: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color(#colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 1)))
+            .frame(width: 245, height: 50)
+            .background(Color(#colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 0.05121630933)))
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+    }
+}
+
+struct ButtonTertiary: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .foregroundColor(Color(#colorLiteral(red: 0.04705882353, green: 0.05098039216, blue: 0.2039215686, alpha: 1)))
+            .frame(width: 245, height: 50)
+            .background(Color.clear)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+    }
+}
+
 struct FunkyBorders: Shape {
     let curveSize = 50
+    var lineHeightPercentage: CGFloat = 0.66
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
         
-        let lineHeight = Int(rect.height * 0.66)
+        let lineHeight = Int(rect.height * lineHeightPercentage)
         
         path.move(to: CGPoint(x: 0, y: lineHeight + curveSize))
         

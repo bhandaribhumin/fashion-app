@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6321C1D524E71D9900B4969C /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6321C1D424E71D9900B4969C /* WelcomeView.swift */; };
+		6321C1D624E71D9900B4969C /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6321C1D424E71D9900B4969C /* WelcomeView.swift */; };
 		635E55A824E0A08300270922 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635E55A724E0A08300270922 /* Slide.swift */; };
 		635E55A924E0A08300270922 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635E55A724E0A08300270922 /* Slide.swift */; };
 		63737AA224DFEEE800E1207E /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63737AA124DFEEE800E1207E /* Tests_iOS.swift */; };
@@ -37,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6321C1D424E71D9900B4969C /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		635E55A724E0A08300270922 /* Slide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
 		63737A8624DFEEE700E1207E /* FashionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FashionApp.swift; sourceTree = "<group>"; };
 		63737A8724DFEEE700E1207E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 			children = (
 				63737A8624DFEEE700E1207E /* FashionApp.swift */,
 				63737A8724DFEEE700E1207E /* ContentView.swift */,
+				6321C1D424E71D9900B4969C /* WelcomeView.swift */,
 				635E55A724E0A08300270922 /* Slide.swift */,
 				63737A8824DFEEE800E1207E /* Assets.xcassets */,
 			);
@@ -315,6 +319,7 @@
 				635E55A824E0A08300270922 /* Slide.swift in Sources */,
 				63737AB124DFEEE800E1207E /* ContentView.swift in Sources */,
 				63737AAF24DFEEE800E1207E /* FashionApp.swift in Sources */,
+				6321C1D524E71D9900B4969C /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +330,7 @@
 				635E55A924E0A08300270922 /* Slide.swift in Sources */,
 				63737AB224DFEEE800E1207E /* ContentView.swift in Sources */,
 				63737AB024DFEEE800E1207E /* FashionApp.swift in Sources */,
+				6321C1D624E71D9900B4969C /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
